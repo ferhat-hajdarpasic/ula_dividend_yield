@@ -1,0 +1,37 @@
+﻿<div class="container">
+    <div id="highchart_container" style="height: 400px; width: 600px"></div>
+</div> <!-- /container -->
+
+{{#section "script"}}
+    <script src="/highstock.js"></script>
+    <script src="/exporting.js"></script>
+{{/section}}
+{{#section "javascript"}}
+    $(function () {
+        $.getJSON('/series?ticker={{ticker}}', function (data) {
+            //data = $.parseJSON(data);
+            console.log(data);
+            // Create the chart
+            $('#highchart_container').highcharts('StockChart', {
+
+
+                rangeSelector: {
+                    selected: 1
+                },
+
+                title: {
+                    text: '{{ticker}} Price Chart'
+                },
+
+                series: [{
+                    name: '{{ticker}}',
+                    data: data,
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                }]
+            });
+        });
+
+    });
+{{/section}}

@@ -1,0 +1,154 @@
+﻿    <div class="row">
+        <form class="pull-right" style="width: 300px;" role="form">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <input name="ticker" type="text" placeholder="Stock symbol" class="form-control" value="{{ticker}}">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" class="btn btn-success">Get data!</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Crucial statistics</div>
+                <!-- List group -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        Forward yield <span class="badge">
+                            {{dividendYield}}%
+                        </span>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Trailing yield  <span class="badge">{{dividendYield}}%</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Retail deposit and investment rates; Banks' term deposits ($10000); 1 year  <span class="badge">{{termDeposit}}%</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Lending rates; Personal loans; Revolving credit; Home equity loans  <span class="badge">{{retailLandingRate}}%</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Last price <span class="badge">{{lastPrice}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Recent dividend history</div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Dividend</th>
+                            <th>Ex Dividend Date</th>
+                            <th>Record Date</th>
+                            <th>Date Payable</th>
+                            <th>% Franked</th>
+                            <th>Dividend Income</th>
+                        </tr>
+                        <tbody>
+                            {{#each dividends}}
+                            <tr>
+                                <td>{{dividend}}</td>
+                                <td>{{formatDate exDividendDate}}</td>
+                                <td>{{formatDate recordDate}}</td>
+                                <td>{{formatDate datePayable}}</td>
+                                <td>{{percentFranked}}</td>
+                                <th>{{dividendIncome}}</th>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Price history</div>
+                <div id="highchart_container" style="position: absolute;width: 95%;"></div>
+            </div>
+        </div>
+
+    </div>
+{{#section "script"}}
+<script src="/highstock.js"></script>
+<script src="/exporting.js"></script>
+{{/section}}
+{{#section "javascript"}}
+    $(function () {
+        $.getJSON('/priceSeries?ticker={{ticker}}', function (priceHistoryData) {
+            console.log(priceHistoryData);
+            $.getJSON('/dividendsSeries?ticker={{ticker}}', function (dividendHistoryData) {
+                var dividendData = [];
+                for(var i = 0; i < dividendHistoryData.length; i++) {
+                    var date = new Date(dividendHistoryData[i][0]);
+                    dividendData.push({
+                        title : 'D',
+                        x : Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+                        text : '$' + dividendHistoryData[i][1]
+                    });
+                }
+                // Create the chart
+                $('#highchart_container').highcharts('StockChart', {
+                    rangeSelector: {
+                        selected: 5
+                    },
+                    scrollbar : {
+                        enabled : false
+                    },
+                    title: {
+                        text: '{{ticker}} Price Chart'
+                    },
+                    navigator : {
+                        enabled : false
+                    },
+                    series: [
+                        {
+                            id : 'pricechart',
+                            name: '{{ticker}}',
+                            data: priceHistoryData,
+                            tooltip: {
+                                valueDecimals: 2
+                            }
+                        },
+                        {
+                            type : 'flags',
+                            data : dividendData,
+                            onSeries : 'pricechart',
+                            shape : 'flag',
+                            width : 16
+                        }
+                    ]
+                });
+            });
+        });
+
+    });
+{{/section}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

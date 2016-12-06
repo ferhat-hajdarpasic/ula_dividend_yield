@@ -1,0 +1,32 @@
+{
+  "name": "Express4App1",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "description": "Express4App1",
+  "author": {
+    "name": "ferhat",
+    "email": ""
+  },
+  "dependencies": {
+    "accounting": "0.4.1",
+    "body-parser": "^1.8.4",
+    "cheerio": "^0.18.0",
+    "cookie-parser": "^1.3.5",
+    "csv-parse": "0.0.6",
+    "debug": "^2.0.0",
+    "express": "^4.9.8",
+    "express-handlebars": "^1.1.0",
+    "jquery": "^2.1.1",
+    "moment": "^2.8.4",
+    "mongoose": "^4.1.10",
+    "morgan": "^1.3.2",
+    "node-cache": "^1.1.0",
+    "plotly": "^0.2.15",
+    "request": "^1.9.9",
+    "serve-favicon": "^2.1.7",
+    "stylus": "^0.42.3"
+  }
+}

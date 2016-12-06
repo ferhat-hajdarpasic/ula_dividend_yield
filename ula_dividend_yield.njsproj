@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Express4App1</Name>
+    <RootNamespace>Express4App1</RootNamespace>
+    <NameOfLastUsedPublishProfile>ferhat - Web Deploy</NameOfLastUsedPublishProfile>
+    <LaunchUrl>/csv</LaunchUrl>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>bdc6afef-03eb-4024-a619-5349301d0a7a</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>bin\www</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="public\js\main.js" />
+    <Compile Include="public\js\vendor\bootstrap.js" />
+    <Compile Include="public\js\vendor\bootstrap.min.js" />
+    <Compile Include="public\js\vendor\jquery-1.11.1.min.js" />
+    <Compile Include="public\js\vendor\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Compile Include="public\js\vendor\npm.js" />
+    <Compile Include="lib\Asx.js" />
+    <Compile Include="routes\index.js" />
+    <Compile Include="routes\users.js" />
+    <Compile Include="bin\www" />
+    <Compile Include="views\bootstrap_files\d3.v3.min.js" />
+    <Compile Include="views\bootstrap_files\d3.v3.js" />
+    <Compile Include="views\index.hbs.js" />
+    <Compile Include="views\jumbotron.hbs.js" />
+    <Compile Include="views\layouts\main.hbs.js" />
+    <Compile Include="views\play.hbs.js" />
+    <Content Include="public\apple-touch-icon-precomposed.png" />
+    <Content Include="public\css\bootstrap-theme.css" />
+    <Content Include="public\css\bootstrap-theme.css.map" />
+    <Content Include="public\css\bootstrap-theme.min.css" />
+    <Content Include="public\css\bootstrap.css" />
+    <Content Include="public\css\bootstrap.css.map" />
+    <Content Include="public\css\bootstrap.min.css" />
+    <Content Include="public\css\main.css" />
+    <Content Include="public\css\sticky-footer.css" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="package.json" />
+    <Content Include="public\index.html" />
+    <Content Include="public\stylesheets\style.styl" />
+    <Content Include="README.md" />
+    <Content Include="views\bootstrap_files\miserables.json" />
+    <Content Include="views\index.handlebars" />
+    <Content Include="views\jumbotron.handlebars" />
+    <Content Include="views\layout.jade" />
+    <Content Include="views\error.handlebars" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="public\css\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\img\" />
+    <Folder Include="public\js\" />
+    <Folder Include="public\js\vendor\" />
+    <Folder Include="lib\" />
+    <Folder Include="public\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="routes\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\accounting\" />
+    <Folder Include="typings\globals\body-parser\" />
+    <Folder Include="typings\globals\cheerio\" />
+    <Folder Include="typings\globals\cookie-parser\" />
+    <Folder Include="typings\globals\csv-parse\" />
+    <Folder Include="typings\globals\debug\" />
+    <Folder Include="typings\globals\express-handlebars\" />
+    <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\jquery\" />
+    <Folder Include="typings\globals\moment\" />
+    <Folder Include="typings\globals\mongoose\" />
+    <Folder Include="typings\globals\morgan\" />
+    <Folder Include="typings\globals\node-cache\" />
+    <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\request\" />
+    <Folder Include="typings\globals\serve-favicon\" />
+    <Folder Include="typings\globals\stylus\" />
+    <Folder Include="views\" />
+    <Folder Include="views\bootstrap_files\" />
+    <Folder Include="views\layouts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="views\layouts\main - Copy.handlebars" />
+    <Content Include="views\layouts\main.handlebars" />
+    <Content Include="views\play.handlebars" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config" />
+    <Content Include="bin\ChangeConfig.ps1" />
+    <Content Include="bin\download.ps1" />
+    <Content Include="bin\setup_web.cmd" />
+    <Content Include="bin\node.cmd" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\accounting\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cheerio\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cookie-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\csv-parse\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\debug\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-handlebars\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\morgan\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\node-cache\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\request\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\serve-favicon\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\stylus\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/media-queries.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="cleartype" content="on"><link rel="stylesheet" href="http://googlesamples.github.io/web-fundamentals/samples/css/normalize.css"><link rel="stylesheet" href="http://googlesamples.github.io/web-fundamentals/samples/css/main.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" title="roboto"><link rel="stylesheet" href="http://googlesamples.github.io/web-fundamentals/samples/css/base.css"><link rel="stylesheet" href="http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/vpdemo.css"><link rel="stylesheet" media="(max-width: 640px)" href="http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/max-640px.css"><link rel="stylesheet" media="(min-width: 640px)" href="http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/min-640px.css"><link rel="stylesheet" media="(orientation: portrait)" href="http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/portrait.css"><link rel="stylesheet" media="(orientation: landscape)" href="http://googlesamples.github.io/web-fundamentals/samples/layouts/rwd-fundamentals/landscape.css"><style>@media (min-width: 500px) and (max-width: 600px) {
+        h1 {
+          color: fuchsia;
+        }
+
+        .desc:after {
+          content:" In fact, it's between 500px and 600px wide.";
+        }
+      }</style><title>RWD Fundamentals: Experimenting with media queries</title></head><body><article role="main"><h1>Media Queries</h1><p class="desc"></p><p class="orientation">Orientation:</p><p>This is a test to show how the <code>media</code> queries affects a page.</p></article><script src="./mobile.handlebars_files/analytics.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-24532603-1');ga('send','pageview');
+
+    var isCompleted = {};
+    function sampleCompleted(sampleName){
+      if (ga && !isCompleted.hasOwnProperty(sampleName)) {
+        ga('send', 'event', 'WebCentralSample', sampleName, 'completed'); 
+        isCompleted[sampleName] = true;
+      }
+    }</script><script type="text/javascript">function init() {
+        window.matchMedia("(min-width: 640px)").addListener(hitMQ);
+      }
+
+      function hitMQ(evt) {
+        sampleCompleted("RWDFundamentals-MediaQueries");
+      }
+
+      init();</script></body></html>
