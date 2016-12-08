@@ -42,6 +42,10 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
+    <Compile Include="UnitTest.js">
+      <SubType>Code</SubType>
+      <TestFramework>Mocha</TestFramework>
+    </Compile>
     <Compile Include="views\bootstrap_files\d3.v3.min.js" />
     <Compile Include="views\bootstrap_files\d3.v3.js" />
     <Compile Include="views\index.hbs.js" />
@@ -65,7 +69,6 @@
     <Content Include="package.json" />
     <Content Include="public\index.html" />
     <Content Include="public\stylesheets\style.styl" />
-    <Content Include="README.md" />
     <Content Include="views\bootstrap_files\miserables.json" />
     <Content Include="views\index.handlebars" />
     <Content Include="views\jumbotron.handlebars" />
@@ -74,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
+    <Folder Include="polymer\" />
     <Folder Include="public\css\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\img\" />
@@ -96,6 +100,7 @@
     <Folder Include="typings\globals\express-handlebars\" />
     <Folder Include="typings\globals\express\" />
     <Folder Include="typings\globals\jquery\" />
+    <Folder Include="typings\globals\mocha\" />
     <Folder Include="typings\globals\moment\" />
     <Folder Include="typings\globals\mongoose\" />
     <Folder Include="typings\globals\morgan\" />
@@ -129,6 +134,7 @@
     <TypeScriptCompile Include="typings\globals\express-handlebars\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mocha\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\morgan\index.d.ts" />
