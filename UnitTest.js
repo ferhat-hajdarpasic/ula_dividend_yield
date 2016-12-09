@@ -30,4 +30,36 @@ describe('Get price from ASX', function () {
             done();
         })
     }).timeout(50000);
+
+    it('Return price series for ticker', (done) => {
+        var promise = new Promise(function (resolve, reject) {
+            asx.priceHistory('BHP', function (series) {
+                resolve(series);
+            });
+        });
+
+        promise.then((series) => {
+            for (var i = series.length - 1; i >= 0; i--) {
+                //console.log([series[i].date.valueOf() + '=>' + series[i].close]);
+            }
+            done();
+        })
+    }).timeout(50000);
+
+    it('Return option series for ticker, month and option type', (done) => {
+        var promise = new Promise(function (resolve, reject) {
+            asx.options('BHP', 'Jan 2017', 'Call', function (series) {
+                resolve(series);
+            });
+        });
+
+        promise.then((series) => {
+            for (var i = series.length - 1; i >= 0; i--) {
+                if (series[i].last > 0.0) {
+                    console.log(JSON.stringify(series[i]));
+                }
+            }
+            done();
+        })
+    }).timeout(50000);
 })
