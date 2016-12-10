@@ -1,0 +1,12 @@
+<html><head><link rel="import" href="data-table-column-filter.html">
+
+</head><body><dom-module id="data-table-column">
+  <template>
+    <template id="header">
+      <data-table-column-filter label="[[column.name]]" value="{{column.filterValue}}" hidden$="[[!column.filterBy]]"></data-table-column-filter>
+      <div hidden$="[[column.filterBy]]">[[column.name]]</div>
+    </template>
+  </template>
+  <script>Polymer({is:"data-table-column",properties:{alignRight:{type:Boolean,value:!1},name:{type:String,value:""},filterBy:String,filterValue:String,width:{type:String,value:"100px"},flex:{type:Number,value:1},hidden:{type:Boolean,value:!1},order:{type:Number,notify:!0},sortBy:{type:String},table:Object,headerTemplate:{type:Object,readOnly:!0,value:function(){var e=Polymer.dom(this).querySelector("template[is=header]");if(e&&e.parentElement){var t=e.parentElement;return e._rootDataHost=t.dataHost._rootDataHost||t.dataHost,e}return Polymer.dom(this.root).querySelector("#header")}},template:{type:Object,readOnly:!0,value:function(){var e=Polymer.dom(this).querySelector("template:not([is=header])");if(e)return this.dataHost&&(e._rootDataHost=this.dataHost._rootDataHost||this.dataHost),e}}},observers:["_alignRightChanged(table, alignRight)","_filterValueChanged(table, filterValue, filterBy)","_filterByChanged(table, filterBy)","_flexChanged(table, flex)","_headerTemplateChanged(table, headerTemplate)","_hiddenChanged(table, hidden)","_nameChanged(table, name)","_orderChanged(table, order)","_sortByChanged(table, sortBy)","_templateChanged(table, template)","_widthChanged(table, width)"],_notifyTable:function(e,t,a){if(e.columns){var n=e.columns.indexOf(this);e.notifyPath("columns."+n+"."+t,a)}},_alignRightChanged:function(e,t){this._notifyTable(e,"alignRight",t)},_nameChanged:function(e,t){this._notifyTable(e,"name",t)},_sortByChanged:function(e,t){this._notifyTable(e,"sortBy",t)},_flexChanged:function(e,t){this._notifyTable(e,"flex",t)},_headerTemplateChanged:function(e,t){this._notifyTable(e,"headerTemplate",t)},_hiddenChanged:function(e,t){this._notifyTable(e,"hidden",t)},_orderChanged:function(e,t){this._notifyTable(e,"order",t)},_templateChanged:function(e,t){this._notifyTable(e,"template",t)},_widthChanged:function(e,t){this._notifyTable(e,"width",t)},_filterByChanged:function(e,t){this._notifyTable(e,"filterBy",t)},_filterValueChanged:function(e,t,a){this._notifyTable(e,"filterValue",t),this.fire("column-filter-changed",{value:t,filterBy:a})}});</script>
+</dom-module>
+</body></html>

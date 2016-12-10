@@ -1,0 +1,16 @@
+<html><head><link rel="import" href="data-table-templatizer-behavior.html">
+
+</head><body><dom-module id="data-table-row-detail">
+  <template>
+    <style>
+      :host {
+        padding: 0 24px 0 24px;
+        display: flex;
+        align-items: center;
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>Polymer({is:"data-table-row-detail",behaviors:[saulis.DataTableTemplatizerBehavior],properties:{beforeBind:Object},observers:["_beforeBind(beforeBind, item.*, index, selected, expanded)"],attached:function(){Polymer.Settings.useNativeShadow||(Polymer.StyleTransformer.dom(this,"iron-data-table",this._scopeCssViaAttr,!0),this.domHost&&Polymer.StyleTransformer.dom(this,this.domHost.tagName.toLowerCase(),this._scopeCssViaAttr,!1))},_beforeBind:function(e,t,s,a,i){var o={index:s,item:t.base,expanded:i,selected:a};e(o,this)}});</script>
+</dom-module>
+</body></html>

@@ -39,9 +39,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 //app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'polymer')));
-app.use(express.static(path.join(__dirname, 'polymer/bower_components')));
+//app.use(express.static(path.join(__dirname, 'polymer/bower_components')));
 app.use(express.static(path.join(__dirname, 'views/bootstrap_files')));
+
+app.use(express.static(path.join(__dirname, 'polymer'))); //Serve from source
+//app.use(express.static(path.join(__dirname, 'polymer/option/build/bundled'))); //server from build
 
 app.use('/', routes);
 app.use('/users', users);

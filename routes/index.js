@@ -14,6 +14,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 var asx = require('../lib/Asx.js');
+var optionHelper = require('../lib/OptionHelper.js');
 
 router.get('/skeleton', function (req, res, next) {
     res.render('skeleton', {});
@@ -31,6 +32,13 @@ router.get('/stock', function (req, res, next) {
             price: price,
             ticker: ticker
         });
+    });
+});
+
+router.get('/price', function (req, res, next) {
+    var ticker = req.query.ticker;
+    asx.price(ticker, function (price) {
+        res.json(parseFloat(price));
     });
 });
 
@@ -138,6 +146,26 @@ router.get('/dividendsSeries', function (req, res, next) {
         res.json(data);
     });
 });
+
+router.get('/options', function (req, res, next) {
+    var ticker = req.query.ticker;
+    var month = req.query.month;
+    var type = req.query.type;
+    asx.price(ticker, function (price) {
+        asx.options(ticker, month, type, function (options) {
+            var data = [];
+            for (var i = options.length - 1; i >= 0; i--) {
+                var o = optionHelper.compute(options[i], price);
+                var outOfMoney = o.strike > 1.01 * o.price
+                if (outOfMoney && o.last > 0) {
+                    data.push(o);
+                }
+            }
+            res.json(data);
+        });
+    });
+});
+
 
 router.get('/history', function (req, res, next) {
     var ticker = req.query.ticker;

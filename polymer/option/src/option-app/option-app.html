@@ -1,25 +1,26 @@
-<link rel="import" href="/iron-demo-helpers/demo-pages-shared-styles.html">
-<link rel="import" href="/paper-button/paper-button.html">
-<link rel="import" href="/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="/paper-radio-button/paper-radio-button.html">
-<link rel="import" href="/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="/paper-input/paper-input.html">
-<link rel="import" href="/paper-item/paper-item.html">
-<link rel="import" href="/paper-menu/paper-menu.html">
-<link rel="import" href="/paper-spinner/paper-spinner.html">
-<link rel="import" href="/paper-styles/color.html">
-<link rel="import" href="/paper-styles/typography.html">
-<link rel="import" href="form-snippet.html">
+<link rel="import" href="../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
 
-<link rel="import" href="/polymer/polymer.html">
-<link rel="import" href="/iron-icons/iron-icons.html">
-<link rel="import" href="/iron-ajax/iron-ajax.html">
-<link rel="import" href="/marked-element/marked-element.html">
-<link rel="import" href="/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="/paper-styles/shadow.html">
-<link rel="import" href="/prism-element/prism-highlighter.html">
-<link rel="import" href="/prism-element/prism-theme-default.html">
-<link rel="import" href="/iron-data-table/iron-data-table.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+<link rel="import" href="../../bower_components/prism-element/prism-highlighter.html">
+<link rel="import" href="../../bower_components/prism-element/prism-theme-default.html">
+<link rel="import" href="../../bower_components/iron-data-table/iron-data-table.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
 
 <dom-module id="option-app">
     <template>
@@ -69,75 +70,80 @@
         </style>
         <prism-highlighter></prism-highlighter>
         <div class="demo">
-                <div class="vertical-section-container">
-                    <h3>ASX Covered call option evaluation</h3>
-                    <form is="iron-form" method="get" action="/" id="basic">
-                        <div class="horizontal-section-container">
-                            <paper-input name="name" label="Stock code" required></paper-input>
-                            <paper-dropdown-menu label="Expiry month" name="expiry" required>
-                                <paper-menu class="dropdown-content">
-                                    <paper-item value="Jan 2017">Jan 2017</paper-item>
-                                    <paper-item value="Feb 2017">Feb 2017</paper-item>
-                                    <paper-item value="Mar 2017">Mar 2017</paper-item>
-                                    <paper-item value="Apr 2017">Apr 2017</paper-item>
-                                </paper-menu>
-                            </paper-dropdown-menu>
-                            <br>
+            <div class="vertical-section-container">
+                <h3>ASX Covered call option evaluation</h3>
+                <form is="iron-form" method="get" action="/" id="basic">
+                    <div class="horizontal-section-container">
+                        <paper-input name="ticker" label="Stock code" required></paper-input>
+                        <paper-dropdown-menu label="Expiry month" name="expiry" required>
+                            <paper-menu class="dropdown-content">
+                                <paper-item value="Jan 2017">Jan 2017</paper-item>
+                                <paper-item value="Feb 2017">Feb 2017</paper-item>
+                                <paper-item value="Mar 2017">Mar 2017</paper-item>
+                                <paper-item value="Apr 2017">Apr 2017</paper-item>
+                            </paper-menu>
+                        </paper-dropdown-menu>
+                        <paper-input name="aoutOfTheMoneyness" label="% out-of-money" required>1%</paper-input>
+                        <br>
+                        <paper-material elevation="1">
+                            <div>Last price: [[price]]</div>
                             <paper-button raised onclick="_submit(event)">Submit</paper-button>
-                        </div>
-                    </form>
-                </div>
+                        </paper-material>
+                    </div>
+                </form>
+            </div>
             <div>
-                <iron-ajax url="https://saulis.github.io/iron-data-table/demo/users.json" last-response="{{users}}" auto></iron-ajax>
-                <iron-data-table selection-enabled items="[[users.results]]">
-                    <data-table-column name="Code">
+                <iron-ajax url="/price?ticker=BHP" last-response="{{price}}" auto></iron-ajax>
+                <iron-ajax url="/options?ticker=BHP&month=Jan 2017&type=Call" last-response="{{options}}" auto></iron-ajax>
+                <iron-data-table selection-enabled items="[[options]]">
+                    <data-table-column name="Option Code">
                         <template>
-                            [[item.user.name.first]]
+                            [[item.code]]
                         </template>
                     </data-table-column>
-                    <data-table-column name="Expiry">
+                    <data-table-column name="Expiry Date">
                         <template>
-                            [[item.user.name.first]]
+                            [[item.expiry]]
                         </template>
                     </data-table-column>
-                    <data-table-column name="Excercise">
+                    <data-table-column name="Strike">
                         <template>
-                            [[foo]]
+                            [[item.strike]]
                         </template>
                     </data-table-column>
-                    <data-table-column name="Offer">
+                    <data-table-column name="Last">
                         <template>
-                            <paper-input value="{{foo}}"></paper-input>
+                            <paper-input value="{{item.last}}"></paper-input>
                         </template>
                     </data-table-column>
                     <data-table-column name="No. of Contracts">
                         <template>
-                            <paper-input value="{{foo}}"></paper-input>
+                            <paper-input value="{{item.noOfContracts}}"></paper-input>
                         </template>
                     </data-table-column>
                     <data-table-column name="Commission">
                         <template>
-                            [[foo]]
+                            [[item.commission]]
                         </template>
                     </data-table-column>
                     <data-table-column name="Net pay">
                         <template>
-                            [[foo]]
+                            [[item.netPay]]
                         </template>
                     </data-table-column>
                     <data-table-column name="Days holding position">
                         <template>
-                            [[foo]]
+                            [[item.daysHoldingPosition]]
                         </template>
                     </data-table-column>
                     <data-table-column name="% return">
                         <template>
-                            [[foo]]
+                            [[item.return]]
                         </template>
                     </data-table-column>
                     <data-table-column name="% prob of excercise">
                         <template>
-                            [[foo]]
+                            [[item.probabilityOfExcercise]]
                         </template>
                     </data-table-column>
                 </iron-data-table>
@@ -157,8 +163,9 @@
         Polymer({
             is: 'option-app',
             properties: {
-                users: Object
-            }
+                users: Object,
+                price: Object
+        }
         });
     </script>
 </dom-module>

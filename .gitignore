@@ -5,3 +5,5 @@
 /.vs
 /obj
 /typings
+/polymer/option/bower_components
+/polymer/bower_components

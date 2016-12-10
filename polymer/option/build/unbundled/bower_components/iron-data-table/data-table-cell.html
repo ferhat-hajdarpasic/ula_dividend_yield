@@ -1,0 +1,29 @@
+<html><head><link rel="import" href="data-table-templatizer-behavior.html">
+
+</head><body><dom-module id="data-table-cell">
+  <template>
+    <style>
+      :host {
+        flex: 1 0 100px;
+        padding: 0 24px 0 24px;
+        min-height: 10px; /* Prevent iron-list from looping when item height is really small */
+        height: 48px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        transition: flex-basis 200ms, flex-grow 200ms;
+      }
+
+      :host([header]) {
+        height: 56px;
+      }
+
+      :host([hidden]) {
+        display: none;
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>Polymer({is:"data-table-cell",behaviors:[saulis.DataTableTemplatizerBehavior],properties:{alignRight:Boolean,column:Object,flex:Number,header:Boolean,hidden:Boolean,order:Number,template:Object,width:String,beforeBind:{type:Object,value:function(){return function(e,n){}}}},observers:["_beforeBind(beforeBind, column.*, index, item.*, expanded, selected)","_beforeBindHeader(beforeBind, column.*)","_alignRightChanged(alignRight)","_columnChanged(_instance, column)","_columnPathChanged(_instance, column.*)","_flexChanged(flex)","_hiddenChanged(hidden)","_orderChanged(order)","_widthChanged(width)"],attached:function(){Polymer.Settings.useNativeShadow||(Polymer.StyleTransformer.dom(this,"iron-data-table",this._scopeCssViaAttr,!0),this.domHost&&Polymer.StyleTransformer.dom(this,this.domHost.tagName.toLowerCase(),this._scopeCssViaAttr,!1))},_alignRightChanged:function(e){this.style.flexDirection=e?"row-reverse":"row"},_beforeBind:function(e,n,t,i,o,a){var d={column:n.base,index:t,item:i.base,expanded:o,selected:a};e(d,this)},_beforeBindHeader:function(e,n){if(this.header){var t={column:n.base};e(t,this)}},_hiddenChanged:function(e){this.toggleAttribute("hidden",e)},_orderChanged:function(e){this.style.order=e},_flexChanged:function(e){this.style.flexGrow=e},_widthChanged:function(e){this.style.flexBasis=e},_columnChanged:function(e,n){e.column=n},_columnPathChanged:function(e,n){this.async(function(){this._parentProps=this._parentProps||{},e.notifyPath(n.path,n.value)})}});</script>
+</dom-module>
+</body></html>

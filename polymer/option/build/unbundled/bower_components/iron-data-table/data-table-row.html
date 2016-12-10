@@ -1,0 +1,58 @@
+<html><head></head><body><dom-module id="data-table-row">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        cursor: pointer;
+
+        @apply(--iron-data-table-row);
+      }
+
+      :host([selected]) .cells {
+        @apply(--iron-data-table-row-selected);
+      }
+
+      :host(:not([header])[even]) {
+        @apply(--iron-data-table-row-even);
+      }
+
+      :host(:not([header]):not([even])) {
+        @apply(--iron-data-table-row-odd);
+      }
+
+      :host(:focus) {
+        outline: none;
+        @apply(--iron-data-table-row-focused);
+      }
+
+      :host(:not([header]):hover) {
+        @apply(--iron-data-table-row-hover);
+      }
+
+      :host(:focus):after {
+        @apply(--iron-data-table-row-focused-after);
+      }
+
+      :host:after {
+        @apply(--iron-data-table-row-after);
+      }
+
+      .cells {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+    </style>
+    <div class="cells">
+      <content select="data-table-checkbox"></content>
+      <content select="data-table-cell"></content>
+    </div>
+    <div class="details">
+      <content select="data-table-row-detail"></content>
+    </div>
+  </template>
+  <script>Polymer({is:"data-table-row",properties:{beforeBind:Object,expanded:{type:Boolean,reflectToAttribute:!0},index:Number,item:Object,selected:{type:Boolean,reflectToAttribute:!0},_static:{type:Object,value:{id:0}}},observers:["_beforeBind(beforeBind, index, item.*, selected, expanded)"],attached:function(){if(this.domHost&&"IRON-DATA-TABLE"===this.domHost.tagName.toUpperCase()){var e=this._static.id++,t=this.parentElement;t._rowId||(this._contentElement=document.createElement("content"),this._contentElement.setAttribute("select","#item"+e),Polymer.dom(t).appendChild(this._contentElement),this.id="item"+e,t._rowId=e,Polymer.dom(this.domHost).appendChild(this),this._ownerShadyRoot=void 0)}},_beforeBind:function(e,t,i,o,d){var n={index:t,item:i.base,expanded:d,selected:o};e(n,this)}});</script>
+</dom-module>
+</body></html>

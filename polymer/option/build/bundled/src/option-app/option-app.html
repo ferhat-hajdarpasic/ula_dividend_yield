@@ -1,0 +1,155 @@
+<html><head><link rel="import" href="../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+<link rel="import" href="../../bower_components/prism-element/prism-highlighter.html">
+<link rel="import" href="../../bower_components/prism-element/prism-theme-default.html">
+<link rel="import" href="../../bower_components/iron-data-table/iron-data-table.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+
+</head><body><dom-module id="option-app">
+    <template>
+        <style is="custom-style" include="prism-theme-default"></style>
+        <style>
+            :host {
+                display: block;
+                @apply(--shadow-elevation-2dp);
+            }
+
+            .demo {
+                border-bottom: 1px solid var(--google-grey-300);
+                background-color: white;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .output {
+                margin-top: 20px;
+                word-wrap: break-word;
+                @apply(--paper-font-common-code);
+            }
+
+            form > paper-button {
+                width: 45%;
+                margin-top: 20px;
+            }
+
+            form paper-button:not([disabled]) {
+                background: var(--paper-light-blue-500);
+                color: white;
+            }
+
+            button {
+                margin-top: 20px;
+            }
+
+            paper-spinner {
+                width: 14px;
+                height: 14px;
+                margin-right: 20px;
+            }
+
+            paper-dropdown-menu {
+                display: block;
+            }
+        </style>
+        <prism-highlighter></prism-highlighter>
+        <div class="demo">
+            <div class="vertical-section-container">
+                <h3>ASX Covered call option evaluation</h3>
+                <form is="iron-form" method="get" action="/" id="basic">
+                    <div class="horizontal-section-container">
+                        <paper-input name="ticker" label="Stock code" required=""></paper-input>
+                        <paper-dropdown-menu label="Expiry month" name="expiry" required="">
+                            <paper-menu class="dropdown-content">
+                                <paper-item value="Jan 2017">Jan 2017</paper-item>
+                                <paper-item value="Feb 2017">Feb 2017</paper-item>
+                                <paper-item value="Mar 2017">Mar 2017</paper-item>
+                                <paper-item value="Apr 2017">Apr 2017</paper-item>
+                            </paper-menu>
+                        </paper-dropdown-menu>
+                        <paper-input name="aoutOfTheMoneyness" label="% out-of-money" required="">1%</paper-input>
+                        <br>
+                        <paper-material elevation="1">
+                            <div>Last price: [[price]]</div>
+                            <paper-button raised="" onclick="_submit(event)">Submit</paper-button>
+                        </paper-material>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <iron-ajax url="/price?ticker=BHP" last-response="{{price}}" auto=""></iron-ajax>
+                <iron-ajax url="/options?ticker=BHP&amp;month=Jan 2017&amp;type=Call" last-response="{{options}}" auto=""></iron-ajax>
+                <iron-data-table selection-enabled="" items="[[options]]">
+                    <data-table-column name="Option Code">
+                        <template>
+                            [[item.code]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Expiry Date">
+                        <template>
+                            [[item.expiry]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Strike">
+                        <template>
+                            [[item.strike]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Last">
+                        <template>
+                            <paper-input value="{{item.last}}"></paper-input>
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="No. of Contracts">
+                        <template>
+                            <paper-input value="{{item.noOfContracts}}"></paper-input>
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Commission">
+                        <template>
+                            [[item.commission]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Net pay">
+                        <template>
+                            [[item.netPay]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="Days holding position">
+                        <template>
+                            [[item.daysHoldingPosition]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="% return">
+                        <template>
+                            [[item.return]]
+                        </template>
+                    </data-table-column>
+                    <data-table-column name="% prob of excercise">
+                        <template>
+                            [[item.probabilityOfExcercise]]
+                        </template>
+                    </data-table-column>
+                </iron-data-table>
+            </div>
+        </div>
+    </template>
+    <script>function _submit(e){Polymer.dom(e).localTarget.parentElement.submit()}function _reset(e){var t=Polymer.dom(e).localTarget.parentElement;t.reset(),t.querySelector(".output").innerHTML=""}Polymer({is:"option-app",properties:{users:Object,price:Object}});</script>
+</dom-module>
+</body></html>

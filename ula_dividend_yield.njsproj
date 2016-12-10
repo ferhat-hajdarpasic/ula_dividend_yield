@@ -32,6 +32,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="lib\Option.js" />
     <Compile Include="public\js\main.js" />
     <Compile Include="public\js\vendor\bootstrap.js" />
     <Compile Include="public\js\vendor\bootstrap.min.js" />
@@ -52,6 +53,7 @@
     <Compile Include="views\jumbotron.hbs.js" />
     <Compile Include="views\layouts\main.hbs.js" />
     <Compile Include="views\play.hbs.js" />
+    <Content Include="option-app.html" />
     <Content Include="public\apple-touch-icon-precomposed.png" />
     <Content Include="public\css\bootstrap-theme.css" />
     <Content Include="public\css\bootstrap-theme.css.map" />
